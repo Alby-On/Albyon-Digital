@@ -140,3 +140,37 @@ async function eliminarEquipo(id) {
 }
 
 cargarEquipos();
+
+// ... (Tus configuraciones iniciales de Supabase y getVal)
+
+function mostrarNotificacion(nombre) {
+    const container = document.getElementById('notification-container');
+    const toast = document.createElement('div');
+    toast.className = "bg-green-600 text-white px-6 py-4 rounded-lg shadow-2xl mb-3 flex items-center gap-3 animate-bounce";
+    toast.innerHTML = `
+        <i class="fas fa-check-circle text-xl"></i>
+        <div>
+            <p class="font-bold uppercase text-xs">Éxito en Registro</p>
+            <p class="text-sm">Se ha registrado correctamente un equipo: <b>${nombre}</b></p>
+        </div>
+    `;
+    container.appendChild(toast);
+
+    // Desaparece después de 4 segundos
+    setTimeout(() => {
+        toast.remove();
+    }, 4000);
+}
+
+// Dentro del form.addEventListener('submit'...
+// Reemplaza el bloque del "else" (cuando no hay error):
+
+    if (error) {
+        alert("Error de Supabase: " + error.message);
+    } else {
+        const nombreRegistrado = getVal('nombre_equipo'); // Capturamos el nombre
+        mostrarNotificacion(nombreRegistrado); // Llamamos a la notificación
+        form.reset();
+        // Restaurar nombre por defecto del técnico
+        document.getElementById('realizada_por').value = "Jaime Alfredo Jimenez Saldaña";
+    }
