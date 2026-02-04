@@ -117,3 +117,59 @@ async function eliminarEquipo(id) {
 
 // Carga inicial
 cargarEquipos();
+
+// ... (Mantén tu configuración de conexión arriba)
+
+// NUEVA FUNCIÓN: Calcular fecha de vencimiento automáticamente
+function actualizarVencimiento() {
+    const fechaInput = document.getElementById('ultima_mantencion').value;
+    const frecuencia = document.getElementById('frecuencia').value;
+    const vencimientoInput = document.getElementById('vencimiento_calibracion');
+
+    if (fechaInput) {
+        let fecha = new Date(fechaInput);
+        if (frecuencia === "Semestral") {
+            fecha.setMonth(fecha.getMonth() + 6);
+        } else {
+            fecha.setFullYear(fecha.getFullYear() + 1);
+        }
+        // Ajustar formato a YYYY-MM-DD para el input date
+        vencimientoInput.value = fecha.toISOString().split('T')[0];
+    }
+}
+
+// Escuchar cambios para el cálculo automático
+document.getElementById('ultima_mantencion').addEventListener('change', actualizarVencimiento);
+document.getElementById('frecuencia').addEventListener('change', actualizarVencimiento);
+
+// Ajuste en el Guardado (Insertar los campos nuevos)
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nuevoEquipo = {
+        codigo_peoplesoft: document.getElementById('codigo_peoplesoft').value,
+        nombre_equipo: document.getElementById('nombre_equipo').value,
+        actividad: document.getElementById('actividad').value, // Agregado
+        instructivo_area: document.getElementById('instructivo_area').value, // Agregado
+        realizada_por: document.getElementById('realizada_por').value, // Agregado
+        lugar: "Bodega General", // Puedes añadir el input si lo necesitas
+        prioridad: document.getElementById('prioridad').value,
+        frecuencia: document.getElementById('frecuencia').value,
+        ultima_mantencion: document.getElementById('ultima_mantencion').value,
+        vencimiento_calibracion: document.getElementById('vencimiento_calibracion').value,
+        existencias_reales: parseInt(document.getElementById('existencias_reales').value) || 0,
+        existencias_estandar: parseInt(document.getElementById('existencias_estandar').value) || 0
+    };
+
+    const { error } = await _supabase
+        .from('equipos_mantencion')
+        .insert([nuevoEquipo]);
+
+    if (error) {
+        alert("Error: " + error.message);
+    } else {
+        alert("Registro exitoso para el área: " + nuevoEquipo.instructivo_area);
+        form.reset();
+        cargarEquipos();
+    }
+});
