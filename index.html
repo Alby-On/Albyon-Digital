@@ -26,73 +26,81 @@
                 <i class="fas fa-plus-circle text-blue-600 text-2xl"></i>
             </div>
 
-            <form id="form-equipo" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Código Inventario PeopleSoft</label>
-                    <input type="text" id="codigo_peoplesoft" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Ej: 102030 (Opcional)">
-                </div>
+<form id="form-equipo" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Código Inventario PeopleSoft</label>
+        <input type="text" id="codigo_peoplesoft" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border">
+    </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Nombre del Equipo</label>
-                    <input type="text" id="nombre_equipo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Nombre interno">
-                </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Nombre del Equipo</label>
+        <input type="text" id="nombre_equipo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border">
+    </div>
 
-                <div class="lg:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700">Especificación Técnica Detallada</label>
-                    <textarea id="especificacion_tecnica" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Marca, modelo, características estándar..."></textarea>
-                </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Área Académica</label>
+        <select id="instructivo_area" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border">
+            <option value="Automatización, Electrónica y Robotica">Automatización, Electrónica y Robotica</option>
+            <option value="Energia">Energia</option>
+            <option value="Mecanica (Mecatronica)">Mecanica (Mecatronica)</option>
+        </select>
+    </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Lugar / Almacenamiento</label>
-                    <input type="text" id="lugar" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
-                </div>
+    <div class="lg:col-span-3">
+        <label class="block text-sm font-medium text-gray-700">Actividad Realizada</label>
+        <textarea id="actividad" rows="2" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border" placeholder="Describe el mantenimiento realizado..."></textarea>
+    </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Prioridad</label>
-                    <select id="prioridad" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
-                        <option value="A">Prioridad A (Crítico)</option>
-                        <option value="B">Prioridad B (Medio)</option>
-                        <option value="C">Prioridad C (Bajo)</option>
-                    </select>
-                </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Prioridad</label>
+        <select id="prioridad" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border">
+            <option value="A">Prioridad A (Semestral)</option>
+            <option value="B">Prioridad B (Semestral)</option>
+            <option value="C">Prioridad C (Anual)</option>
+        </select>
+    </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Frecuencia de Mantención</label>
-                    <select id="frecuencia" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
-                        <option value="Semestral">Semestral</option>
-                        <option value="Anual">Anual</option>
-                    </select>
-                </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Frecuencia</label>
+        <select id="frecuencia" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border">
+            <option value="Semestral">Semestral</option>
+            <option value="Anual">Anual</option>
+        </select>
+    </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Última Mantención Realizada</label>
-                    <input type="date" id="ultima_mantencion" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
-                </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Realizada por (Técnico)</label>
+        <input type="text" id="realizada_por" value="Jaime Alfredo Jimenez Saldaña" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border bg-gray-50">
+    </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Vencimiento Calibración</label>
-                    <input type="date" id="vencimiento_calibracion" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
-                </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Fecha Mantención Realizada</label>
+        <input type="date" id="ultima_mantencion" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border">
+    </div>
 
-                <div class="grid grid-cols-2 gap-2">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase">Existencias</label>
-                        <input type="number" id="existencias_reales" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border" value="0">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase">Estándar</label>
-                        <input type="number" id="existencias_estandar" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border" value="0">
-                    </div>
-                </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700 italic text-blue-600">Vencimiento Calculado</label>
+        <input type="date" id="vencimiento_calibracion" readonly class="mt-1 block w-full rounded-md border-gray-100 shadow-sm p-2 border bg-blue-50 font-bold">
+    </div>
 
-                <div class="lg:col-span-3 flex justify-end gap-4 mt-4">
-                    <button type="reset" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">Limpiar</button>
-                    <button type="submit" class="px-6 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition shadow-lg">
-                        <i class="fas fa-save mr-2"></i> Guardar Equipo
-                    </button>
-                </div>
-            </form>
+    <div class="grid grid-cols-2 gap-2">
+        <div>
+            <label class="block text-xs font-bold text-gray-600">Existencias</label>
+            <input type="number" id="existencias_reales" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border" value="0">
+        </div>
+        <div>
+            <label class="block text-xs font-bold text-gray-600">Estándar</label>
+            <input type="number" id="existencias_estandar" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border" value="0">
+        </div>
+    </div>
+
+    <div class="lg:col-span-3 flex justify-end gap-4 mt-4">
+        <button type="submit" class="px-6 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition shadow-lg w-full md:w-auto">
+            <i class="fas fa-save mr-2"></i> Guardar y Calcular Vencimiento
+        </button>
+    </div>
+</form>
         </section>
 
         <section class="bg-white rounded-xl shadow-md overflow-hidden">
