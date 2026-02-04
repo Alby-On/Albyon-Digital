@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Mantención</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="bg-blue-700 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold uppercase tracking-wider">
+                <i class="fas fa-tools mr-2"></i> Plan de Mantención
+            </h1>
+            <span class="text-sm bg-blue-800 px-3 py-1 rounded-full">Usuario: Jaime Alfredo</span>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 lg:p-8">
+        
+        <section class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <div class="flex items-center justify-between mb-6 border-b pb-2">
+                <h2 class="text-2xl font-semibold text-gray-800">Registrar Nuevo Equipo</h2>
+                <i class="fas fa-plus-circle text-blue-600 text-2xl"></i>
+            </div>
+
+            <form id="form-equipo" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Código Inventario PeopleSoft</label>
+                    <input type="text" id="codigo_peoplesoft" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Ej: 102030 (Opcional)">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Nombre del Equipo</label>
+                    <input type="text" id="nombre_equipo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Nombre interno">
+                </div>
+
+                <div class="lg:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">Especificación Técnica Detallada</label>
+                    <textarea id="especificacion_tecnica" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Marca, modelo, características estándar..."></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Lugar / Almacenamiento</label>
+                    <input type="text" id="lugar" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Prioridad</label>
+                    <select id="prioridad" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                        <option value="A">Prioridad A (Crítico)</option>
+                        <option value="B">Prioridad B (Medio)</option>
+                        <option value="C">Prioridad C (Bajo)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Frecuencia de Mantención</label>
+                    <select id="frecuencia" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                        <option value="Semestral">Semestral</option>
+                        <option value="Anual">Anual</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Última Mantención Realizada</label>
+                    <input type="date" id="ultima_mantencion" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Vencimiento Calibración</label>
+                    <input type="date" id="vencimiento_calibracion" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase">Existencias</label>
+                        <input type="number" id="existencias_reales" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border" value="0">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase">Estándar</label>
+                        <input type="number" id="existencias_estandar" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border" value="0">
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3 flex justify-end gap-4 mt-4">
+                    <button type="reset" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">Limpiar</button>
+                    <button type="submit" class="px-6 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition shadow-lg">
+                        <i class="fas fa-save mr-2"></i> Guardar Equipo
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-6 border-b bg-gray-50 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-gray-800">Listado de Equipos y Trazabilidad</h2>
+                <div class="relative">
+                    <input type="text" placeholder="Buscar equipo..." class="pl-10 pr-4 py-2 border rounded-full text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                    <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+                        <tr>
+                            <th class="p-4 border-b">Equipo / Especificación</th>
+                            <th class="p-4 border-b">Ubicación</th>
+                            <th class="p-4 border-b">Prioridad</th>
+                            <th class="p-4 border-b">Última Mantención</th>
+                            <th class="p-4 border-b">Estado/Brecha</th>
+                            <th class="p-4 border-b">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-cuerpo" class="text-gray-700 text-sm">
+                        <tr class="hover:bg-gray-50 border-b">
+                            <td class="p-4">
+                                <div class="font-bold text-blue-800 uppercase">Multímetro Digital</div>
+                                <div class="text-xs text-gray-500">Fluke 179 - True RMS</div>
+                            </td>
+                            <td class="p-4 text-gray-600">Laboratorio 201</td>
+                            <td class="p-4">
+                                <span class="px-2 py-1 bg-red-100 text-red-700 rounded-full text-[10px] font-bold">ALTA (A)</span>
+                            </td>
+                            <td class="p-4">15/01/2026</td>
+                            <td class="p-4">
+                                <span class="text-green-600 font-bold"><i class="fas fa-check-circle"></i> Al día</span>
+                            </td>
+                            <td class="p-4">
+                                <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
+                                <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
