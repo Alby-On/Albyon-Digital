@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal - JOSCAM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans min-h-screen">
+
+    <header class="bg-blue-700 text-white shadow-lg p-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold tracking-tighter">ELECTRIC JOSCAM</h1>
+                <p class="text-blue-100 text-sm">Sistema Central de Gestión de Mantención</p>
+            </div>
+            <div class="text-right hidden md:block">
+                <p class="font-semibold">Jaime Alfredo Jimenez Saldaña</p>
+                <p class="text-xs text-blue-200">Administrador de Activos</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-8">
+        <h2 class="text-xl font-bold text-gray-700 mb-8 uppercase tracking-widest text-center">Panel de Control</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <a href="index.html" class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all transform hover:-translate-y-2 p-6 flex flex-col items-center text-center group">
+                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-3xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">Plan de Mantención</h3>
+                <p class="text-gray-500 text-xs mt-2">Consulta de equipos, semáforo de vencimientos y brechas.</p>
+            </a>
+
+            <a href="registro.html" class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all transform hover:-translate-y-2 p-6 flex flex-col items-center text-center group">
+                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">Registro de Equipos</h3>
+                <p class="text-gray-500 text-xs mt-2">Incorporar nuevos activos al inventario de la sede.</p>
+            </a>
+
+            <a href="editor.html" class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all transform hover:-translate-y-2 p-6 flex flex-col items-center text-center group">
+                <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-3xl mb-4 group-hover:bg-yellow-600 group-hover:text-white transition-colors">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">Editor de Equipos</h3>
+                <p class="text-gray-500 text-xs mt-2">Modificar información, actualizar stock y ubicaciones.</p>
+            </a>
+
+            <a href="historial.html" class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all transform hover:-translate-y-2 p-6 flex flex-col items-center text-center group">
+                <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-3xl mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                    <i class="fas fa-history"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">Historial de Cambios</h3>
+                <p class="text-gray-500 text-xs mt-2">Trazabilidad completa de movimientos y ediciones.</p>
+            </a>
+
+        </div>
+
+        <section class="mt-12 bg-white rounded-2xl p-8 shadow-sm">
+            <h3 class="text-gray-700 font-bold mb-4"><i class="fas fa-info-circle mr-2 text-blue-500"></i>Resumen de Sistema</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div class="p-4 border-r border-gray-100">
+                    <p class="text-2xl font-bold text-blue-700">Conectado</p>
+                    <p class="text-gray-400 text-xs uppercase">Base de Datos Supabase</p>
+                </div>
+                <div class="p-4 border-r border-gray-100">
+                    <p class="text-2xl font-bold text-gray-800">Sede</p>
+                    <p class="text-gray-400 text-xs uppercase">Área Automatización y Energía</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-2xl font-bold text-gray-800" id="fecha-actual">--/--/--</p>
+                    <p class="text-gray-400 text-xs uppercase">Fecha de Hoy</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Mostrar fecha actual
+        const d = new Date();
+        document.getElementById('fecha-actual').innerText = d.toLocaleDateString();
+    </script>
+</body>
+</html>
