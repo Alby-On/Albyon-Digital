@@ -7,8 +7,15 @@ const _supabase = supabase.createClient(URL_DB, KEY_DB);
 const form = document.getElementById('form-equipo');
 const tablaCuerpo = document.getElementById('tabla-cuerpo');
 
-// Función segura para obtener valores
-const getVal = (id) => document.getElementById(id) ? document.getElementById(id).value : "";
+// Función de captura robusta
+function getVal(id) {
+    const el = document.getElementById(id);
+    if (!el) {
+        console.warn(`Elemento con ID "${id}" no encontrado en el HTML.`);
+        return null;
+    }
+    return el.value.trim();
+}
 
 // --- CÁLCULO AUTOMÁTICO DE VENCIMIENTO ---
 function actualizarVencimiento() {
@@ -17,7 +24,7 @@ function actualizarVencimiento() {
     const vencimientoField = document.getElementById('vencimiento_calibracion');
 
     if (fechaInput && vencimientoField) {
-        let fecha = new Date(fechaInput + 'T00:00:00'); // Evita desfase de zona horaria
+        let fecha = new Date(fechaInput + 'T00:00:00');
         if (frecuencia === "Semestral") {
             fecha.setMonth(fecha.getMonth() + 6);
         } else {
@@ -27,7 +34,6 @@ function actualizarVencimiento() {
     }
 }
 
-// Escuchadores para el cálculo automático
 document.getElementById('ultima_mantencion')?.addEventListener('change', actualizarVencimiento);
 document.getElementById('frecuencia')?.addEventListener('change', actualizarVencimiento);
 
@@ -40,28 +46,34 @@ form.addEventListener('submit', async (e) => {
         nombre_equipo: getVal('nombre_equipo'),
         especificacion_tecnica: getVal('especificacion_tecnica'),
         actividad: getVal('actividad'),
-        instructivo_area: getVal('instructivo_area'),
-        realizada_por: getVal('realizada_por'),
-        lugar: getVal('lugar'),
-        prioridad: getVal('prioridad'),
         frecuencia: getVal('frecuencia'),
+        prioridad: getVal('prioridad'),
         ultima_mantencion: getVal('ultima_mantencion') || null,
+        realizada_por: getVal('realizada_por'),
         vencimiento_calibracion: getVal('vencimiento_calibracion') || null,
+        instructivo_area: getVal('instructivo_area'),
+        lugar: getVal('lugar'),
         existencias_reales: parseInt(getVal('existencias_reales')) || 0,
         existencias_estandar: parseInt(getVal('existencias_estandar')) || 0
     };
+
+    // DEBUG: Mira esto en la consola (F12) antes de guardar
+    console.log("Enviando a Supabase:", nuevoEquipo);
 
     const { error } = await _supabase
         .from('equipos_mantencion')
         .insert([nuevoEquipo]);
 
     if (error) {
-        alert("Error de Supabase: " + error.message);
+        console.error("Error detallado:", error);
+        alert("Error al guardar: " + error.message);
     } else {
-        alert("¡Guardado con éxito!");
+        alert("¡Registro guardado exitosamente!");
         form.reset();
-        // Recargar nombre por defecto tras reset
-        document.getElementById('realizada_por').value = "Jaime Alfredo Jimenez Saldaña";
+        // Restaurar nombre por defecto
+        if(document.getElementById('realizada_por')) {
+            document.getElementById('realizada_por').value = "Jaime Alfredo Jimenez Saldaña";
+        }
         cargarEquipos();
     }
 });
@@ -74,7 +86,7 @@ async function cargarEquipos() {
         .order('fecha_creacion', { ascending: false });
 
     if (error) {
-        console.error("Error:", error);
+        console.error("Error al cargar:", error);
         return;
     }
 
@@ -82,39 +94,36 @@ async function cargarEquipos() {
 
     equipos.forEach(equipo => {
         const tieneBrecha = equipo.existencias_reales < equipo.existencias_estandar;
-        
-        // Semáforo de Vencimiento
         const hoy = new Date();
         const vencimiento = equipo.vencimiento_calibracion ? new Date(equipo.vencimiento_calibracion + 'T00:00:00') : null;
         const estaVencido = vencimiento && vencimiento < hoy;
 
         tablaCuerpo.innerHTML += `
-            <tr class="hover:bg-gray-50 border-b">
+            <tr class="hover:bg-gray-50 border-b border-gray-200">
                 <td class="p-4">
-                    <div class="font-bold text-blue-800 uppercase text-xs">${equipo.nombre_equipo}</div>
-                    <div class="text-[10px] text-gray-600 italic">${equipo.especificacion_tecnica || 'Sin especificación'}</div>
-                    <div class="text-[9px] text-gray-400">ID: ${equipo.codigo_peoplesoft || 'N/A'}</div>
+                    <div class="font-bold text-blue-900 uppercase text-xs">${equipo.nombre_equipo}</div>
+                    <div class="text-[10px] text-gray-500 leading-tight">${equipo.especificacion_tecnica || 'Sin detalles técnicos'}</div>
                 </td>
                 <td class="p-4">
-                    <span class="text-[10px] font-semibold bg-blue-50 text-blue-700 px-2 py-1 rounded">
-                        ${equipo.lugar || '---'}
+                    <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                        ${equipo.lugar || 'N/A'}
                     </span>
                 </td>
-                <td class="p-4">
-                    <span class="px-2 py-1 bg-gray-100 rounded text-[10px] font-bold">${equipo.prioridad}</span>
+                <td class="p-4 text-center">
+                    <span class="px-2 py-1 bg-gray-100 rounded text-[10px] font-mono font-bold">${equipo.prioridad || '-'}</span>
                 </td>
-                <td class="p-4 text-[10px] ${estaVencido ? 'text-red-600 font-bold' : ''}">
+                <td class="p-4 text-[10px] ${estaVencido ? 'text-red-600 font-bold' : 'text-gray-700'}">
                     ${equipo.ultima_mantencion || '---'}
-                    ${estaVencido ? '<br><span class="text-[8px] uppercase">[Vencido]</span>' : ''}
+                    ${estaVencido ? '<br><span class="text-[8px]">[VENCIDO]</span>' : ''}
                 </td>
                 <td class="p-4 text-[10px]">
                     ${tieneBrecha 
-                        ? `<span class="text-red-500 font-bold">BRECHA (${equipo.existencias_reales}/${equipo.existencias_estandar})</span>` 
-                        : `<span class="text-green-500">OK (${equipo.existencias_reales})</span>`}
+                        ? `<span class="text-red-600 font-bold">BRECHA (${equipo.existencias_reales}/${equipo.existencias_estandar})</span>` 
+                        : `<span class="text-green-600 font-medium">OK (${equipo.existencias_reales})</span>`}
                 </td>
-                <td class="p-4">
-                    <button onclick="eliminarEquipo('${equipo.id}')" class="text-red-600 hover:text-red-800">
-                        <i class="fas fa-trash"></i>
+                <td class="p-4 text-right">
+                    <button onclick="eliminarEquipo('${equipo.id}')" class="text-red-500 hover:text-red-700 transition">
+                        <i class="fas fa-trash-alt"></i>
                     </button>
                 </td>
             </tr>
@@ -123,12 +132,11 @@ async function cargarEquipos() {
 }
 
 async function eliminarEquipo(id) {
-    if(confirm("¿Estás seguro de que deseas eliminar este registro técnico?")) {
+    if(confirm("¿Confirmas la eliminación definitiva de este equipo?")) {
         const { error } = await _supabase.from('equipos_mantencion').delete().eq('id', id);
         if (error) alert("Error al eliminar");
         else cargarEquipos();
     }
 }
 
-// Iniciar aplicación
 cargarEquipos();
