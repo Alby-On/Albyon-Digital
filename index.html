@@ -12,6 +12,7 @@
             --accent-soft: #003b11;
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
+            --card-bg: #111111;
         }
 
         * {
@@ -29,7 +30,7 @@
             overflow-x: hidden;
         }
 
-        /* --- Navbar Actualizada --- */
+        /* --- Navbar --- */
         header {
             position: fixed;
             top: 0;
@@ -57,9 +58,7 @@
             color: var(--text-main);
         }
 
-        .logo span {
-            color: var(--accent-green);
-        }
+        .logo span { color: var(--accent-green); }
 
         .nav-links {
             display: flex;
@@ -70,16 +69,15 @@
         .nav-links a {
             text-decoration: none;
             color: var(--text-dim);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             transition: color 0.3s;
+            text-transform: uppercase;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-green);
-        }
+        .nav-links a:hover { color: var(--accent-green); }
 
-        /* --- Hero Section --- */
+        /* --- Hero --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -122,37 +120,78 @@
             box-shadow: 0 10px 20px rgba(0, 255, 65, 0.3);
         }
 
-        /* --- Features/Services --- */
-        .services {
+        /* --- Secciones Generales --- */
+        section {
+            padding: 8rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 8rem 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        h2 span { color: var(--accent-green); }
+
+        /* --- Servicios Detallados --- */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
         .card {
+            background: var(--card-bg);
             border: 1px solid #1a1a1a;
             padding: 2.5rem;
             border-radius: 8px;
-            transition: border-color 0.3s, transform 0.3s;
+            transition: border-color 0.3s;
         }
 
-        .card:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-5px);
-        }
+        .card:hover { border-color: var(--accent-green); }
 
         .card h3 {
             color: var(--accent-green);
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
 
-        .card p {
+        .card ul {
+            list-style: none;
             color: var(--text-dim);
+            font-size: 0.9rem;
         }
+
+        .card ul li { margin-bottom: 0.5rem; }
+        .card ul li::before { content: "> "; color: var(--accent-green); }
+
+        /* --- Clientes (Logos/Nombres) --- */
+        .client-list {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            opacity: 0.7;
+        }
+
+        .client-item {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+        }
+
+        /* --- Contacto --- */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-container p { margin-bottom: 2rem; color: var(--text-dim); }
 
         /* --- Footer --- */
         footer {
@@ -173,14 +212,9 @@
             vertical-align: middle;
         }
 
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
+        @keyframes blink { 50% { opacity: 0; } }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* En móvil se ocultan para un menú hamburguesa (opcional) */
-        }
+        @media (max-width: 768px) { .nav-links { display: none; } }
     </style>
 </head>
 <body>
@@ -191,7 +225,8 @@
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#portafolio">Portafolio</a></li>
+                <li><a href="#clientes">Clientes</a></li>
+                <li><a href="#porque">Por qué elegirnos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
@@ -199,28 +234,79 @@
 
     <section class="hero" id="inicio">
         <h1>ALL-BY <span style="color: var(--accent-green);">ON</span><span class="cursor"></span></h1>
-        <p>Landing pages de alto rendimiento creadas con código puro. Menos carga, más conversiones en Chile.</p>
-        <a href="https://wa.me/tu-numero" class="cta-button">Cotizar mi proyecto</a>
+        <p>Desarrollo de Landing Pages de alto rendimiento para negocios que no se detienen.</p>
+        <a href="https://wa.me/tu-numero" class="cta-button">Cotizar ahora</a>
     </section>
 
-    <section class="services" id="servicios">
-        <div class="card">
-            <h3>Velocidad Extrema</h3>
-            <p>Adiós a los constructores lentos. Uso tecnologías como Astro y Tailwind para que tu web vuele en Google.</p>
-        </div>
-        <div class="card">
-            <h3>Foco en Leads</h3>
-            <p>Integro formularios directamente con Google Sheets o Supabase para que no pierdas ningún dato de tus clientes.</p>
-        </div>
-        <div class="card">
-            <h3>Mobile First</h3>
-            <p>Diseño pensado para el usuario que navega en el celular desde Chillán o cualquier parte de Chile.</p>
+    <section id="servicios">
+        <h2>Nuestros <span>Servicios</span></h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Landing Express</h3>
+                <ul>
+                    <li>Carga ultra-rápida (Astro/HTML)</li>
+                    <li>Diseño 100% Responsivo</li>
+                    <li>Optimización SEO Base</li>
+                    <li>Botón directo a WhatsApp</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Landing Pro + Data</h3>
+                <ul>
+                    <li>Integración con Google Sheets</li>
+                    <li>Gestión de Leads vía Supabase</li>
+                    <li>Formularios Inteligentes</li>
+                    <li>Reporte mensual de visitas</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Web Automática</h3>
+                <ul>
+                    <li>Conexión con CRM</li>
+                    <li>Email Marketing automático</li>
+                    <li>Pasarelas de Pago básicas</li>
+                    <li>Hosting y Dominio incluidos</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <footer id="contacto">
+    <section id="clientes" style="background-color: #0d0d0d; max-width: 100%;">
+        <h2>Proyectos <span>Activos</span></h2>
+        <div class="client-list">
+            <div class="client-item">ARAG SPA</div>
+            <div class="client-item">ELECTRIC_JOSCAM</div>
+            <div class="client-item">ALBYON_LABS</div>
+        </div>
+    </section>
+
+    <section id="porque">
+        <h2>¿Por qué <span>Elegirnos</span>?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Código, no Plantillas</h3>
+                <p style="color: var(--text-dim)">No usamos WordPress pesado. Escribimos código limpio para asegurar que tu sitio sea el más rápido de tu rubro.</p>
+            </div>
+            <div class="card">
+                <h3>Foco en Chillán</h3>
+                <p style="color: var(--text-dim)">Conocemos el mercado local. Entendemos cómo compran los clientes en la región de Ñuble y en todo Chile.</p>
+            </div>
+            <div class="card">
+                <h3>Mentalidad de Analista</h3>
+                <p style="color: var(--text-dim)">Como analistas programadores, no solo diseñamos; estructuramos tus datos para que tu negocio sea escalable.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact-container">
+        <h2>Hablemos de tu <span>Proyecto</span></h2>
+        <p>¿Listo para encender tu presencia digital? Haz clic abajo para iniciar una asesoría técnica por WhatsApp.</p>
+        <a href="https://wa.me/tu-numero" class="cta-button">Enviar Mensaje</a>
+    </section>
+
+    <footer>
         <p>© 2026 Albyon Digital - All-By ON. Desarrollado con ❤️ en Ñuble.</p>
-        <p style="margin-top: 10px; font-family: monospace;">// Analista Programador</p>
+        <p style="margin-top: 10px; font-family: monospace; color: var(--accent-green);">// Analista Programador</p>
     </footer>
 
 </body>
