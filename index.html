@@ -184,12 +184,76 @@
             letter-spacing: 2px;
         }
 
-        /* --- Contacto --- */
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
+     /* --- Estilos para el Formulario de Contacto --- */
+
+form {
+    max-width: 700px;
+    margin: 3rem auto 0;
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid #1a1a1a;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+form:hover {
+    border-color: var(--soft-green); /* Un toque sutil al pasar el mouse */
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    color: var(--accent-green);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 1rem;
+    background: #050505;
+    border: 1px solid #222;
+    color: var(--text-main);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efecto de enfoque (Focus) estilo "Hacker" */
+input:focus, textarea:focus {
+    border-color: var(--accent-green);
+    background: #080808;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.15);
+}
+
+textarea {
+    resize: none; /* Evita que el usuario deforme el diseño */
+}
+
+/* Adaptabilidad para móviles */
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr; /* En celular, el mail y teléfono se apilan */
+    }
+    
+    form {
+        padding: 1.5rem;
+    }
+}
 
         .contact-container p { margin-bottom: 2rem; color: var(--text-dim); }
 
@@ -318,11 +382,45 @@
         </div>
     </section>
 
-    <section id="contacto" class="contact-container">
+   <section id="contacto">
+    <div class="contact-container">
         <h2>Hablemos de tu <span>Proyecto</span></h2>
-        <p>¿Listo para encender tu presencia digital? Haz clic abajo para iniciar una asesoría técnica por WhatsApp.</p>
-        <a href="https://wa.me/tu-numero" class="cta-button">Enviar Mensaje</a>
-    </section>
+        <p style="margin-bottom: 2rem; color: var(--text-dim);">
+            ¿Listo para encender tu presencia digital? Completa el formulario y te contactaré a la brevedad.
+        </p>
+
+        <form action="#" id="form-contacto">
+            <div class="form-group">
+                <label>Nombre Completo</label>
+                <input type="text" placeholder="Ej. Juan Pérez" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="contacto@tuempresa.cl" required>
+                </div>
+                <div class="form-group">
+                    <label>Número de contacto</label>
+                    <input type="tel" placeholder="+56 9 ..." required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Detalle del requerimiento</label>
+                <textarea rows="5" placeholder="Cuéntame sobre tu PyME o proyecto..." required></textarea>
+            </div>
+
+            <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">
+                Enviar Requerimiento
+            </button>
+            
+            <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-dim); text-align: center;">
+                O si prefieres, <a href="https://wa.me/tu-numero" style="color: var(--accent-green); text-decoration: none; font-weight: bold;">contáctame por WhatsApp</a>.
+            </p>
+        </form>
+    </div>
+</section>
 
     <footer>
         <p>© 2026 Albyon Digital - All-By ON. Desarrollado con ❤️ en Ñuble.</p>
