@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Albyon Digital | Landing Pages de Alto Impacto</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <style>
+<style>
         :root {
-            --bg-dark: #0a0a0a;
-            --accent-green: #00ff41; 
-            --accent-soft: #003b11;
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-            --card-bg: #111111;
+            --bg-dark: #0f172a;       /* Azul marino profundo */
+            --accent-green: #38bdf8;  /* Azul eléctrico (mantenemos el nombre de la variable para no romper tu HTML) */
+            --accent-soft: #1e293b;   /* Azul pizarra para gradientes */
+            --text-main: #f8fafc;     /* Blanco suave */
+            --text-dim: #94a3b8;      /* Gris azulado */
+            --card-bg: #1e293b;       /* Fondo de tarjetas */
         }
 
         * {
@@ -35,10 +35,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(10, 10, 10, 0.9);
+            background-color: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid #1a1a1a;
+            border-bottom: 1px solid #334155;
         }
 
         nav {
@@ -105,7 +105,7 @@
 
         .cta-button {
             background-color: var(--accent-green);
-            color: black;
+            color: #0f172a;
             padding: 1rem 2.5rem;
             text-decoration: none;
             font-weight: 700;
@@ -117,7 +117,7 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 255, 65, 0.3);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
         }
 
         /* --- Secciones Generales --- */
@@ -145,7 +145,7 @@
 
         .card {
             background: var(--card-bg);
-            border: 1px solid #1a1a1a;
+            border: 1px solid #334155;
             padding: 2.5rem;
             border-radius: 8px;
             transition: border-color 0.3s;
@@ -166,7 +166,7 @@
         }
 
         .card ul li { margin-bottom: 0.5rem; }
-        .card ul li::before { content: "> "; color: var(--accent-green); }
+        .card ul li::before { content: "→ "; color: var(--accent-green); }
 
         /* --- Clientes (Logos/Nombres) --- */
         .client-list {
@@ -184,76 +184,73 @@
             letter-spacing: 2px;
         }
 
-     /* --- Estilos para el Formulario de Contacto --- */
+        /* --- Estilos para el Formulario de Contacto --- */
+        form {
+            max-width: 700px;
+            margin: 3rem auto 0;
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
 
-form {
-    max-width: 700px;
-    margin: 3rem auto 0;
-    background: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: 8px;
-    border: 1px solid #1a1a1a;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
+        form:hover {
+            border-color: var(--accent-green);
+        }
 
-form:hover {
-    border-color: var(--soft-green); /* Un toque sutil al pasar el mouse */
-}
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
 
-.form-group {
-    margin-bottom: 1.5rem;
-}
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
 
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-}
+        label {
+            display: block;
+            color: var(--accent-green);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
-label {
-    display: block;
-    color: var(--accent-green);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: var(--text-main);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-input, textarea {
-    width: 100%;
-    padding: 1rem;
-    background: #050505;
-    border: 1px solid #222;
-    color: var(--text-main);
-    border-radius: 4px;
-    font-size: 0.95rem;
-    outline: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+        input:focus, textarea:focus {
+            border-color: var(--accent-green);
+            background: #1e293b;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+        }
 
-/* Efecto de enfoque (Focus) estilo "Hacker" */
-input:focus, textarea:focus {
-    border-color: var(--accent-green);
-    background: #080808;
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.15);
-}
+        textarea {
+            resize: none;
+        }
 
-textarea {
-    resize: none; /* Evita que el usuario deforme el diseño */
-}
-
-/* Adaptabilidad para móviles */
-@media (max-width: 600px) {
-    .form-row {
-        grid-template-columns: 1fr; /* En celular, el mail y teléfono se apilan */
-    }
-    
-    form {
-        padding: 1.5rem;
-    }
-}
+        /* Adaptabilidad para móviles */
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            form {
+                padding: 1.5rem;
+            }
+        }
 
         .contact-container p { margin-bottom: 2rem; color: var(--text-dim); }
 
@@ -261,7 +258,7 @@ textarea {
         footer {
             text-align: center;
             padding: 4rem 2rem;
-            border-top: 1px solid #1a1a1a;
+            border-top: 1px solid #334155;
             color: var(--text-dim);
             font-size: 0.8rem;
         }
