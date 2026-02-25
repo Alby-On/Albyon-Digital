@@ -405,6 +405,197 @@
 .card li {
     transition: transform 0.3s ease;
 }
+/* --- Animaciones Hero --- */
+
+/* 1. Efecto de Escritura y Cursor */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background-color: var(--accent-green);
+    margin-left: 5px;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* 2. Entrada Animada (Fade-in Up) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero > * {
+    opacity: 0; /* Inicialmente ocultos para la animación */
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Delays para efecto cascada */
+.hero div:first-child { animation-delay: 0.2s; }
+.hero h1 { animation-delay: 0.4s; }
+.hero p { animation-delay: 0.6s; }
+.hero .cta-group { animation-delay: 0.8s; }
+.hero .hero-stats { animation-delay: 1s; }
+
+/* 3. Animación de los Botones */
+.hero a:last-child:hover {
+    border-color: var(--accent-green) !important;
+    color: var(--accent-green) !important;
+    background: rgba(56, 189, 248, 0.05);
+    transform: translateY(-2px);
+}
+/* --- Animaciones de Proyectos --- */
+
+/* Contenedor para manejar la entrada */
+#clientes .card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Clase de activación (usaremos el Intersection Observer que ya tienes) */
+#clientes .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efecto Hover específico para Proyectos */
+#clientes .card:hover {
+    background: rgba(30, 41, 59, 0.8);
+    border-left-width: 8px; /* Engrosa el borde verde al pasar el mouse */
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.1);
+    transform: scale(1.02);
+}
+
+/* Animación sutil para los logos al hacer hover en la tarjeta */
+#clientes .card:hover img {
+    filter: brightness(1.4) !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Animación de la flecha en el enlace de Joscam */
+#clientes .card a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+#clientes .card a:hover {
+    transform: translateX(5px);
+}
+/* --- Animaciones sección Por Qué Elegirnos --- */
+
+/* Seleccionamos las tarjetas dentro de esta sección específica */
+#porque .card {
+    border-top: 1px solid transparent; /* Preparar para el efecto hover */
+}
+
+#porque .card:hover {
+    border-top: 1px solid var(--accent-green);
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.05) 0%, rgba(30, 41, 59, 0.5) 100%);
+    transform: translateY(-5px);
+}
+
+#porque .card h3 {
+    transition: color 0.3s ease;
+}
+
+#porque .card:hover h3 {
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+/* --- Animaciones Sección Precios --- */
+
+/* Animación de entrada para las tablas de precios */
+#precios .card {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#precios .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efecto hover interactivo */
+#precios .card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Animación sutil para el plan destacado (Más Completo) */
+.featured-plan {
+    animation: pulse-border 3s infinite;
+}
+
+@keyframes pulse-border {
+    0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(56, 189, 248, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+}
+
+/* Animación de los checks (flechas) al pasar el mouse */
+#precios .card:hover li span {
+    display: inline-block;
+    animation: bounceRight 0.5s ease;
+}
+
+@keyframes bounceRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+/* --- Animaciones Sección Contacto --- */
+
+/* Entrada suave para los bloques de contacto */
+#contacto > div > div {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#contacto.visible > div > div {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delay para la columna de info directa */
+#contacto .info-column {
+    transition-delay: 0.3s;
+}
+
+/* Efecto de foco dinámico en inputs */
+#contacto input:focus, #contacto textarea:focus {
+    border-color: var(--accent-green);
+    background: rgba(56, 189, 248, 0.05);
+    transform: translateX(5px);
+}
+
+/* Animación del botón al enviar (Simulación de proceso) */
+#contacto button:active {
+    transform: scale(0.98);
+    filter: brightness(1.2);
+}
+
+/* Iconos de contacto con pulso sutil */
+.contact-icon {
+    display: inline-block;
+    animation: pulseIcon 2s infinite;
+}
+
+@keyframes pulseIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
 </style>
 </head>
 <body>
@@ -424,25 +615,25 @@
     </header>
 
 <section class="hero" id="inicio">
-        <div style="margin-bottom: 2rem; border: 1px solid var(--accent-green); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; color: var(--accent-green); letter-spacing: 1px; text-transform: uppercase;">
-            📍 Chillán, Ñuble | Analista Programador
-        </div>
+    <div style="margin-bottom: 2rem; border: 1px solid var(--accent-green); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; color: var(--accent-green); letter-spacing: 1px; text-transform: uppercase; background: rgba(56, 189, 248, 0.05);">
+        📍 Chillán, Ñuble | Analista Programador
+    </div>
 
-        <h1>ALBY <span style="color: var(--accent-green);">ON</span><span class="cursor"></span></h1>
-        
-        <p>Transformamos <strong>PyMEs y pequeñas empresas</strong> con Landing Pages personalizadas, conectadas a tus redes y optimizadas para convertir visitantes en clientes.</p>
-        
-        <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center;">
-            <a href="https://wa.me/56977462774" class="cta-button">Cotizar mi Proyecto</a>
-            <a href="#servicios" style="padding: 1rem 2rem; border: 1px solid #333; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; transition: 0.3s;">Ver Soluciones</a>
-        </div>
+    <h1>ALBY <span style="color: var(--accent-green);">ON</span><span class="cursor"></span></h1>
+    
+    <p>Transformamos <strong>PyMEs y pequeñas empresas</strong> con Landing Pages personalizadas, conectadas a tus redes y optimizadas para convertir visitantes en clientes.</p>
+    
+    <div class="cta-group" style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center;">
+        <a href="https://wa.me/56977462774" class="cta-button">Cotizar mi Proyecto</a>
+        <a href="#servicios" style="padding: 1rem 2rem; border: 1px solid #334155; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; transition: 0.3s;">Ver Soluciones</a>
+    </div>
 
-        <div style="margin-top: 4rem; display: flex; gap: 3rem; opacity: 0.6; font-size: 0.8rem; text-transform: uppercase;">
-            <div><span style="color: var(--accent-green);">●</span> 100% Personalizado</div>
-            <div><span style="color: var(--accent-green);">●</span> Listas para Ads</div>
-            <div><span style="color: var(--accent-green);">●</span> Soporte Local</div>
-        </div>
-    </section>
+    <div class="hero-stats" style="margin-top: 4rem; display: flex; gap: 3rem; opacity: 0.8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+        <div><span style="color: var(--accent-green);">●</span> 100% Personalizado</div>
+        <div><span style="color: var(--accent-green);">●</span> Listas para Ads</div>
+        <div><span style="color: var(--accent-green);">●</span> Soporte Local</div>
+    </div>
+</section>
 
 <section id="servicios">
         <h2>Nuestros <span>Servicios</span></h2>
@@ -502,36 +693,43 @@
             <span style="font-size: 0.75rem; color: var(--accent-green); font-family: monospace;">// En fase de despliegue</span>
         </div>
 
-        <div class="card" style="background: rgba(30, 41, 59, 0.5); border-left: 4px solid var(--accent-green); padding: 2rem; border-radius: 8px;">
-            <div style="height: 60px; display: flex; align-items: center; margin-bottom: 1.5rem;">
+        <div class="card" style="background: rgba(30, 41, 59, 0.5); border-left: 4px solid var(--accent-green); padding: 2rem; border-radius: 8px; transition-delay: 0.2s;">
+            <div style="height: 60px; display: flex; align-items: center; margin-bottom: 1.5rem; justify-content: space-between;">
                 <img src="images/Electric_JOSCAM_logo.png" alt="Logo Electric Joscam" style="max-height: 100%; max-width: 180px; filter: brightness(1.1);">
+                <span style="font-size: 0.6rem; background: rgba(56, 189, 248, 0.1); color: var(--accent-green); padding: 2px 8px; border: 1px solid var(--accent-green); border-radius: 10px; text-transform: uppercase; font-weight: 900;">● Live</span>
             </div>
             <div style="font-size: 0.7rem; color: var(--accent-green); text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem;">Servicios Eléctricos</div>
             <h3 style="margin-bottom: 1rem;">ELECTRIC JOSCAM</h3>
             <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.5rem;">
                 Landing page profesional integrada con catálogo de servicios eléctricos y conexión directa a canales de atención inmediata.
             </p>
-            <a href="http://electricjoscam.cl" target="_blank" style="font-size: 0.75rem; color: var(--accent-green); text-decoration: none; font-family: monospace;">www.electricjoscam.cl ↗</a>
+            <a href="http://electricjoscam.cl" target="_blank" style="font-size: 0.75rem; color: var(--accent-green); text-decoration: none; font-family: monospace; font-weight: 700;">www.electricjoscam.cl ↗</a>
         </div>
+        
     </div>
 </section>
       <section id="porque">
-        <h2>¿Por qué <span>Elegirnos</span>?</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Aliados de las PyMEs</h3>
-                <p style="color: var(--text-dim)">Entendemos el esfuerzo de emprender. Creamos soluciones escalables que permiten a las pequeñas empresas competir al más alto nivel digital.</p>
-            </div>
-            <div class="card">
-                <h3>Foco en Chillán y Ñuble</h3>
-                <p style="color: var(--text-dim)">Conocemos el mercado local. Entendemos cómo compran los clientes en nuestra región y adaptamos tu web para captarlos.</p>
-            </div>
-            <div class="card">
-                <h3>Código, no Plantillas</h3>
-                <p style="color: var(--text-dim)">Tu sitio será el más rápido de tu rubro. Usamos código limpio para que Google te encuentre antes que a tu competencia.</p>
-            </div>
+    <h2>¿Por qué <span>Elegirnos</span>?</h2>
+    <div class="grid">
+        <div class="card">
+            <div style="font-size: 1.5rem; margin-bottom: 1rem;">🤝</div>
+            <h3>Aliados de las PyMEs</h3>
+            <p style="color: var(--text-dim)">Entendemos el esfuerzo de emprender. Creamos soluciones escalables que permiten a las pequeñas empresas competir al más alto nivel digital.</p>
         </div>
-    </section>
+
+        <div class="card" style="transition-delay: 0.2s;">
+            <div style="font-size: 1.5rem; margin-bottom: 1rem;">📍</div>
+            <h3>Foco en Chillán y Ñuble</h3>
+            <p style="color: var(--text-dim)">Conocemos el mercado local. Entendemos cómo compran los clientes en nuestra región y adaptamos tu web para captarlos.</p>
+        </div>
+
+        <div class="card" style="transition-delay: 0.4s;">
+            <div style="font-size: 1.5rem; margin-bottom: 1rem;">⚡</div>
+            <h3>Código, no Plantillas</h3>
+            <p style="color: var(--text-dim)">Tu sitio será el más rápido de tu rubro. Usamos código limpio para que Google te encuentre antes que a tu competencia.</p>
+        </div>
+    </div>
+</section>
 
 <section id="precios" style="background-color: rgba(30, 41, 59, 0.3);">
     <h2 style="text-align: center;">Planes a tu <span>Medida</span></h2>
@@ -548,29 +746,29 @@
             <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 2rem;">Presencia digital rápida y efectiva para tu negocio.</p>
             
             <ul style="flex-grow: 1; margin-bottom: 2.5rem; list-style: none;">
-                <li style="margin-bottom: 0.8rem;"><span style="color: var(--accent-green);">→</span> Diseño 100% Personalizado</li>
-                <li style="margin-bottom: 0.8rem;"><span style="color: var(--accent-green);">→</span> Conexión a Instagram y Facebook</li>
-                <li style="margin-bottom: 0.8rem;"><span style="color: var(--accent-green);">→</span> Botón flotante de WhatsApp</li>
-                <li style="margin-bottom: 0.8rem;"><span style="color: var(--accent-green);">→</span> Optimización de carga rápida</li>
-                <li style="margin-bottom: 0.8rem;"><span style="color: var(--accent-green);">→</span> Soporte técnico inicial</li>
+                <li style="margin-bottom: 0.8rem;"><span>→</span> Diseño 100% Personalizado</li>
+                <li style="margin-bottom: 0.8rem;"><span>→</span> Conexión a Instagram y Facebook</li>
+                <li style="margin-bottom: 0.8rem;"><span>→</span> Botón flotante de WhatsApp</li>
+                <li style="margin-bottom: 0.8rem;"><span>→</span> Optimización de carga rápida</li>
+                <li style="margin-bottom: 0.8rem;"><span>→</span> Soporte técnico inicial</li>
             </ul>
             
             <a href="#contacto" class="cta-button" style="text-align: center; background: transparent; border: 1px solid var(--accent-green); color: var(--accent-green);">Me interesa</a>
         </div>
 
-        <div class="card" style="display: flex; flex-direction: column; border-color: var(--accent-green); background: #1e293b; box-shadow: 0 15px 30px rgba(0,0,0,0.4); position: relative;">
-            <div style="position: absolute; top: -15px; right: 20px; background: var(--accent-green); color: #0f172a; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase;">Más Completo</div>
+        <div class="card featured-plan" style="display: flex; flex-direction: column; border-color: var(--accent-green); background: #1e293b; position: relative; transition-delay: 0.2s;">
+            <div style="position: absolute; top: -15px; right: 20px; background: var(--accent-green); color: #0f172a; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; box-shadow: 0 5px 10px rgba(56, 189, 248, 0.3);">Más Completo</div>
             <div style="font-size: 0.8rem; color: var(--accent-green); font-weight: 700; text-transform: uppercase; margin-bottom: 1rem;">Crecimiento PyME</div>
             <h3>Landing Pro + Data</h3>
             <div style="font-size: 2.2rem; font-weight: 900; margin: 1rem 0;">$180.000 <span style="font-size: 1rem; color: var(--text-dim); font-weight: 400;">/ pago único</span></div>
             <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 2rem;">Automatización y gestión de datos para escalar ventas.</p>
             
             <ul style="flex-grow: 1; margin-bottom: 2.5rem; list-style: none;">
-                <li style="margin-bottom: 0.8rem;"><span style="color: var(--accent-green);">→</span> <strong>Todo lo del plan Express</strong></li>
-                <li style="margin-bottom: 0.8rem;"><span style="color: var(--accent-green);">→</span> Formulario de contacto avanzado</li>
-                <li style="margin-bottom: 0.8rem;"><span style="color: var(--accent-green);">→</span> Base de datos (Google Sheets/Supabase)</li>
-                <li style="margin-bottom: 0.8rem;"><span style="color: var(--accent-green);">→</span> Integración de Dominio Propio</li>
-                <li style="margin-bottom: 0.8rem;"><span style="color: var(--accent-green);">→</span> Herramientas de seguimiento (Pixel/Analytics)</li>
+                <li style="margin-bottom: 0.8rem;"><span>→</span> <strong>Todo lo del plan Express</strong></li>
+                <li style="margin-bottom: 0.8rem;"><span>→</span> Formulario de contacto avanzado</li>
+                <li style="margin-bottom: 0.8rem;"><span>→</span> Base de datos (Google Sheets/Supabase)</li>
+                <li style="margin-bottom: 0.8rem;"><span>→</span> Integración de Dominio Propio</li>
+                <li style="margin-bottom: 0.8rem;"><span>→</span> Herramientas de seguimiento (Pixel/Analytics)</li>
             </ul>
             
             <a href="#contacto" class="cta-button" style="text-align: center;">Elegir Plan Pro</a>
@@ -579,7 +777,7 @@
     </div>
 </section>
     
-<section id="contacto">
+<section id="contacto" style="padding: 8rem 2rem;">
     <h2 style="text-align: center; margin-bottom: 3rem;">Hablemos de tu <span>Proyecto</span></h2>
 
     <div style="display: flex; gap: 4rem; max-width: 1000px; margin: 0 auto; flex-wrap: wrap;">
@@ -589,56 +787,56 @@
                 ¿Listo para encender tu presencia digital? Completa el formulario y te contactaré a la brevedad.
             </p>
 
-            <form action="#" id="form-contacto" style="text-align: left; margin-top: 0;">
+            <form action="#" id="form-contacto" style="text-align: left; margin-top: 0; background: var(--card-bg); padding: 2.5rem; border-radius: 8px; border: 1px solid #334155;">
                 <div class="form-group">
                     <label>Nombre Completo</label>
-                    <input type="text" placeholder="Ej. Juan Pérez" required>
+                    <input type="text" placeholder="Ej. Juan Pérez" required style="transition: all 0.3s ease;">
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" placeholder="tu@correo.cl" required>
+                        <input type="email" placeholder="tu@correo.cl" required style="transition: all 0.3s ease;">
                     </div>
                     <div class="form-group">
                         <label>Número de contacto</label>
-                        <input type="tel" placeholder="+56 9 7746 2774" required>
+                        <input type="tel" placeholder="+56 9 7746 2774" required style="transition: all 0.3s ease;">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Detalle del requerimiento</label>
-                    <textarea rows="5" placeholder="Cuéntame sobre tu PyME o proyecto..." required></textarea>
+                    <textarea rows="5" placeholder="Cuéntame sobre tu PyME o proyecto..." required style="transition: all 0.3s ease;"></textarea>
                 </div>
 
-                <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">
+                <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer; transition: all 0.3s ease;">
                     Enviar Requerimiento
                 </button>
             </form>
         </div>
 
-        <div style="flex: 0 0 300px; min-width: 280px; display: flex; flex-direction: column; gap: 2rem;">
+        <div class="info-column" style="flex: 0 0 300px; min-width: 280px; display: flex; flex-direction: column; gap: 2rem;">
             <div style="background: var(--card-bg); padding: 2rem; border-radius: 8px; border: 1px solid #334155;">
                 <h3 style="color: var(--accent-green); font-size: 1.1rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Contacto Directo</h3>
                 
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; font-size: 0.9rem; color: var(--text-dim);">
                     <div style="display: flex; align-items: flex-start; gap: 12px;">
-                        <span style="color: var(--accent-green); font-size: 1.2rem;">✉</span>
+                        <span class="contact-icon" style="color: var(--accent-green); font-size: 1.2rem;">✉</span>
                         <span><strong>Email:</strong><br>jaimeajimenezs@outlook.com</span>
                     </div>
                     
                     <div style="display: flex; align-items: flex-start; gap: 12px;">
-                        <span style="color: var(--accent-green); font-size: 1.2rem;">📞</span>
+                        <span class="contact-icon" style="color: var(--accent-green); font-size: 1.2rem; animation-delay: 0.5s;">📞</span>
                         <span><strong>WhatsApp / Celular:</strong><br>+569 7746 2774</span>
                     </div>
                     
                     <div style="display: flex; align-items: flex-start; gap: 12px;">
-                        <span style="color: var(--accent-green); font-size: 1.2rem;">🕒</span>
+                        <span class="contact-icon" style="color: var(--accent-green); font-size: 1.2rem; animation-delay: 1s;">🕒</span>
                         <span><strong>Horario de Atención:</strong><br>Lun - Vie | 10:00 - 23:00 hrs</span>
                     </div>
                 </div>
 
-                <a href="https://wa.me/56977462774" target="_blank" class="cta-button" style="display: block; text-align: center; margin-top: 2rem; padding: 0.8rem; font-size: 0.8rem;">
+                <a href="https://wa.me/56977462774" target="_blank" class="cta-button" style="display: block; text-align: center; margin-top: 2rem; padding: 0.8rem; font-size: 0.8rem; background: transparent; border: 1px solid var(--accent-green); color: var(--accent-green);">
                     Chat Directo WhatsApp
                 </a>
             </div>
@@ -727,6 +925,12 @@
     document.querySelectorAll('.card').forEach(card => {
         observer.observe(card);
     });
+
+    // Efecto de auto-escritura simple para el Hero
+    const heroTitle = document.querySelector('.hero h1');
+    const text = heroTitle.innerHTML;
+    // Podríamos dejarlo estático con el cursor parpadeando para máxima velocidad,
+    // o activar un re-typing si lo deseas.
 </script>
 </body>
 </html>
