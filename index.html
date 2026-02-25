@@ -96,10 +96,13 @@
         box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
     }
 
-    /* --- Hero & Slider (Actualizado para el nuevo sistema de capas) --- */
+    /* --- Hero & Slider (Actualizado para ancho completo) --- */
     .hero {
         position: relative;
         height: 100vh;
+        width: 100vw; /* Forzamos el 100% del ancho de pantalla */
+        margin-left: calc(-50vw + 50%); /* Rompe márgenes del contenedor padre si existen */
+        margin-right: calc(-50vw + 50%);
         display: flex;
         flex-direction: column;
         justify-content: center;
