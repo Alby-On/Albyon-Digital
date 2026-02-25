@@ -667,17 +667,27 @@
     
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9));"></div>
 
-    <div style="position: relative; z-index: 1; text-align: center; padding: 0 1.5rem;">
+    <div style="text-align: center; padding: 2rem; max-width: 800px; width: 100%;">
+        
         <div style="margin-bottom: 2rem; border: 1px solid var(--accent-green); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; color: var(--accent-green); letter-spacing: 1px; text-transform: uppercase; background: rgba(56, 189, 248, 0.05); display: inline-block;">
             📍 Chillán, Ñuble | Analista Programador
         </div>
 
         <h1>ALBY <span style="color: var(--accent-green);">ON</span><span class="cursor"></span></h1>
-        <p style="max-width: 600px; margin: 0 auto 2.5rem; color: var(--text-dim);">Transformamos <strong>PyMEs y pequeñas empresas</strong> con Landing Pages personalizadas.</p>
+        
+        <p style="color: var(--text-dim); margin-bottom: 2.5rem;">
+            Transformamos <strong>PyMEs y pequeñas empresas</strong> con Landing Pages personalizadas, conectadas a tus redes y optimizadas para convertir.
+        </p>
         
         <div class="cta-group" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
             <a href="https://wa.me/56977462774" class="cta-button">Cotizar mi Proyecto</a>
             <a href="#servicios" style="padding: 1rem 2rem; border: 1px solid #334155; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase;">Ver Soluciones</a>
+        </div>
+
+        <div class="hero-stats" style="margin-top: 4rem; display: flex; gap: 2rem; opacity: 0.8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; justify-content: center; flex-wrap: wrap;">
+            <div><span style="color: var(--accent-green);">●</span> 100% Personalizado</div>
+            <div><span style="color: var(--accent-green);">●</span> Listas para Ads</div>
+            <div><span style="color: var(--accent-green);">●</span> Soporte Local</div>
         </div>
     </div>
 </section>
@@ -968,41 +978,31 @@
         });
     }, observerOptions);
 
-// USAMOS RUTAS RELATIVAS (Esto es lo más seguro en GitHub Pages)
-    // Asegúrate de que los archivos se llamen exactamente así y estén en esa carpeta.
-    const misFondos = [
-        'images/fondos/fondo1.jpg',
-        'images/fondos/fondo2.jpg',
-        'images/fondos/fondo3.jpg'
-    ];
+(function() {
+        const slider = document.getElementById('hero-bg-slider');
+        if (!slider) return;
 
-    const bgElement = document.getElementById('hero-bg-slider');
-    let i = 0;
+        const folder = "images/fondos/";
+        const imagenes = ['fondo1.jpg', 'fondo2.jpg', 'fondo3.jpg'];
+        let idx = 0;
 
-    function rotarImagen() {
-        const urlFinal = misFondos[i];
-        
-        // Creamos un objeto imagen para verificar si existe antes de ponerla de fondo
-        const imgTester = new Image();
-        imgTester.src = urlFinal;
-        
-        imgTester.onload = function() {
-            bgElement.style.backgroundImage = `url('${urlFinal}')`;
-            console.log("✅ Cargada con éxito: " + urlFinal);
-        };
-        
-        imgTester.onerror = function() {
-            console.error("❌ Error 404: No se encontró la imagen en: " + urlFinal + ". Revisa si el nombre o la carpeta 'images/fondos/' son correctos.");
-        };
+        function rotar() {
+            // Usamos una ruta relativa simple
+            const fuente = folder + imagenes[idx];
+            
+            // Pre-carga silenciosa para evitar parpadeos
+            const tempImg = new Image();
+            tempImg.src = fuente;
+            tempImg.onload = () => {
+                slider.style.backgroundImage = "url('" + fuente + "')";
+            };
+            
+            idx = (idx + 1) % imagenes.length;
+        }
 
-        i = (i + 1) % misFondos.length;
-    }
-
-    // Primera carga inmediata
-    rotarImagen();
-    
-    // Intervalo de 7 segundos
-    setInterval(rotarImagen, 7000);
+        rotar();
+        setInterval(rotar, 7000);
+    })();
 </script>
 </body>
 </html>
