@@ -661,29 +661,25 @@
         </nav>
     </header>
 
-<section class="hero" id="inicio" style="position: relative; overflow: hidden;">
+<section class="hero" id="inicio" style="position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
     
-    <div id="hero-bg-slider" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-size: cover; background-position: center; transition: background-image 1.5s ease-in-out;"></div>
+    <div id="hero-bg-slider" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-size: cover; background-position: center; background-repeat: no-repeat; transition: background-image 1.5s ease-in-out; background-color: #0f172a;"></div>
     
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.9));"></div>
 
-    <div style="margin-bottom: 2rem; border: 1px solid var(--accent-green); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; color: var(--accent-green); letter-spacing: 1px; text-transform: uppercase; background: rgba(56, 189, 248, 0.05); position: relative; display: inline-block;">
-        📍 Chillán, Ñuble | Analista Programador
-    </div>
+    <div style="position: relative; z-index: 1; text-align: center; padding: 0 1.5rem;">
+        <div style="margin-bottom: 2rem; border: 1px solid var(--accent-green); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; color: var(--accent-green); letter-spacing: 1px; text-transform: uppercase; background: rgba(56, 189, 248, 0.05); display: inline-block;">
+            📍 Chillán, Ñuble | Analista Programador
+        </div>
 
-    <h1 style="position: relative;">ALBY <span style="color: var(--accent-green);">ON</span><span class="cursor"></span></h1>
-    
-    <p style="position: relative; max-width: 600px; margin-left: auto; margin-right: auto;">Transformamos <strong>PyMEs y pequeñas empresas</strong> con Landing Pages personalizadas, conectadas a tus redes y optimizadas para convertir visitantes en clientes.</p>
-    
-    <div class="cta-group" style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center; position: relative;">
-        <a href="https://wa.me/56977462774" class="cta-button">Cotizar mi Proyecto</a>
-        <a href="#servicios" style="padding: 1rem 2rem; border: 1px solid #334155; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; transition: 0.3s;">Ver Soluciones</a>
-    </div>
-
-    <div class="hero-stats" style="margin-top: 4rem; display: flex; gap: 3rem; opacity: 0.8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; position: relative;">
-        <div><span style="color: var(--accent-green);">●</span> 100% Personalizado</div>
-        <div><span style="color: var(--accent-green);">●</span> Listas para Ads</div>
-        <div><span style="color: var(--accent-green);">●</span> Soporte Local</div>
+        <h1>ALBY <span style="color: var(--accent-green);">ON</span><span class="cursor"></span></h1>
+        
+        <p style="max-width: 600px; margin: 0 auto 2.5rem; color: var(--text-dim);">Transformamos <strong>PyMEs y pequeñas empresas</strong> con Landing Pages personalizadas, conectadas a tus redes y optimizadas para convertir visitantes en clientes.</p>
+        
+        <div class="cta-group" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <a href="https://wa.me/56977462774" class="cta-button">Cotizar mi Proyecto</a>
+            <a href="#servicios" style="padding: 1rem 2rem; border: 1px solid #334155; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; transition: 0.3s;">Ver Soluciones</a>
+        </div>
     </div>
 </section>
 
@@ -978,32 +974,28 @@
         observer.observe(el);
     });
 
-   // Ruta basada en tu estructura de carpetas en el repo
-    const folderPath = "images/fondos/";
-    
-    // Lista de archivos (Asegúrate de que los nombres sean EXACTOS a los de tu repo)
-    const fondos = [
-        'fondo1.jpg',
-        'fondo2.jpg',
-        'fondo3.jpg'
+// Definimos las URLs exactas de tu repositorio (Raw Content)
+    // Esto asegura que carguen independientemente de dónde esté hosteada la web
+    const imagenesDirectas = [
+        "https://raw.githubusercontent.com/Alby-On/Albyon-Digital/main/images/fondos/fondo1.jpg",
+        "https://raw.githubusercontent.com/Alby-On/Albyon-Digital/main/images/fondos/fondo2.jpg",
+        "https://raw.githubusercontent.com/Alby-On/Albyon-Digital/main/images/fondos/fondo3.jpg"
     ];
 
-    const slider = document.getElementById('hero-bg-slider');
-    let currentIndex = 0;
+    const sliderElement = document.getElementById('hero-bg-slider');
+    let indice = 0;
 
-    function changeBackground() {
-        if (fondos.length === 0) return;
-        
-        const fileName = fondos[currentIndex];
-        // Al estar en GitHub Pages, la ruta relativa funciona directamente
-        slider.style.backgroundImage = `url('${folderPath}${fileName}')`;
-        
-        currentIndex = (currentIndex + 1) % fondos.length;
+    function rotarFondo() {
+        console.log("Intentando cargar:", imagenesDirectas[indice]);
+        sliderElement.style.backgroundImage = `url('${imagenesDirectas[indice]}')`;
+        indice = (indice + 1) % imagenesDirectas.length;
     }
 
-    // Inicializar y establecer intervalo
-    changeBackground(); 
-    setInterval(changeBackground, 7000); // 7 segundos para una navegación tranquila
+    // Ejecución inicial
+    rotarFondo();
+    
+    // Cambio cada 7 segundos
+    setInterval(rotarFondo, 7000);
 </script>
 </body>
 </html>
