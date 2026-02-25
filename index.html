@@ -661,21 +661,26 @@
         </nav>
     </header>
 
-<section class="hero" id="inicio">
-    <div style="margin-bottom: 2rem; border: 1px solid var(--accent-green); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; color: var(--accent-green); letter-spacing: 1px; text-transform: uppercase; background: rgba(56, 189, 248, 0.05);">
+<section class="hero" id="inicio" style="position: relative; overflow: hidden;">
+    
+    <div id="hero-bg-slider" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-size: cover; background-position: center; transition: background-image 1.5s ease-in-out;"></div>
+    
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9));"></div>
+
+    <div style="margin-bottom: 2rem; border: 1px solid var(--accent-green); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; color: var(--accent-green); letter-spacing: 1px; text-transform: uppercase; background: rgba(56, 189, 248, 0.05); position: relative;">
         📍 Chillán, Ñuble | Analista Programador
     </div>
 
-    <h1>ALBY <span style="color: var(--accent-green);">ON</span><span class="cursor"></span></h1>
+    <h1 style="position: relative;">ALBY <span style="color: var(--accent-green);">ON</span><span class="cursor"></span></h1>
     
-    <p>Transformamos <strong>PyMEs y pequeñas empresas</strong> con Landing Pages personalizadas, conectadas a tus redes y optimizadas para convertir visitantes en clientes.</p>
+    <p style="position: relative; max-width: 600px;">Transformamos <strong>PyMEs y pequeñas empresas</strong> con Landing Pages personalizadas, conectadas a tus redes y optimizadas para convertir visitantes en clientes.</p>
     
-    <div class="cta-group" style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center;">
+    <div class="cta-group" style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center; position: relative;">
         <a href="https://wa.me/56977462774" class="cta-button">Cotizar mi Proyecto</a>
         <a href="#servicios" style="padding: 1rem 2rem; border: 1px solid #334155; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; transition: 0.3s;">Ver Soluciones</a>
     </div>
 
-    <div class="hero-stats" style="margin-top: 4rem; display: flex; gap: 3rem; opacity: 0.8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+    <div class="hero-stats" style="margin-top: 4rem; display: flex; gap: 3rem; opacity: 0.8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; position: relative;">
         <div><span style="color: var(--accent-green);">●</span> 100% Personalizado</div>
         <div><span style="color: var(--accent-green);">●</span> Listas para Ads</div>
         <div><span style="color: var(--accent-green);">●</span> Soporte Local</div>
@@ -973,8 +978,29 @@
         observer.observe(el);
     });
 
-    // Mantenemos tu lógica del cursor
-    const heroTitle = document.querySelector('.hero h1');
+    // Como el proyecto está en el mismo repo, usamos rutas relativas
+    const path = "images/fondos/";
+    
+    // Lista los nombres de tus archivos tal cual están en GitHub
+    const fondos = [
+        'fondo1.jpg',
+        'fondo2.jpg',
+        'fondo3.jpg'
+    ];
+
+    const slider = document.getElementById('hero-bg-slider');
+    let currentIndex = 0;
+
+    function changeBackground() {
+        const fileName = fondos[currentIndex];
+        // Ruta relativa al archivo index.html
+        slider.style.backgroundImage = `url('${path}${fileName}')`;
+        currentIndex = (currentIndex + 1) % fondos.length;
+    }
+
+    // Iniciar el ciclo
+    changeBackground(); 
+    setInterval(changeBackground, 6000); // Cambia cada 6 segundos
 </script>
 </body>
 </html>
