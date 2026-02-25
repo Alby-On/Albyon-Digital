@@ -998,8 +998,10 @@
     </svg>
 </a>
 <script>
+    // 1. CONFIGURACIÓN DEL INTERSECTION OBSERVER
+    // Definimos las opciones y el observador una sola vez para evitar errores de sintaxis
     const observerOptions = {
-        threshold: 0.1 // Bajamos a 0.1 para que se active más rápido en móviles
+        threshold: 0.1 
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -1010,25 +1012,12 @@
         });
     }, observerOptions);
 
-// 1. CONFIGURACIÓN DEL INTERSECTION OBSERVER (Para visibilidad al hacer scroll)
-    const observerOptions = {
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
-
-    // Seleccionamos todos los elementos que tienen animaciones de entrada
+    // Seleccionamos y activamos la observación para todos los elementos con animación
     document.querySelectorAll('.card, #contacto, .info-column').forEach(el => {
         observer.observe(el);
     });
 
-    // 2. CONFIGURACIÓN DEL SLIDER HERO
+    // 2. CONFIGURACIÓN DEL SLIDER HERO (IIFE para proteger el scope)
     (function() {
         const slider = document.getElementById('hero-bg-slider');
         if (!slider) return;
@@ -1041,12 +1030,16 @@
             const fuente = folder + imagenes[idx];
             const tempImg = new Image();
             tempImg.src = fuente;
+            
+            // Solo cambia el fondo cuando la imagen se haya descargado por completo
             tempImg.onload = () => {
                 slider.style.backgroundImage = "url('" + fuente + "')";
             };
+            
             idx = (idx + 1) % imagenes.length;
         }
 
+        // Ejecución inicial y ciclo cada 7 segundos
         rotar();
         setInterval(rotar, 7000);
     })();
