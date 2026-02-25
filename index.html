@@ -274,28 +274,90 @@ nav {
 
         .contact-container p { margin-bottom: 2rem; color: var(--text-dim); }
 
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 4rem 2rem;
-            border-top: 1px solid #334155;
-            color: var(--text-dim);
-            font-size: 0.8rem;
-        }
+       /* --- Footer --- */
+footer {
+    background-color: rgba(15, 23, 42, 0.95);
+    padding: 4rem 2rem 2rem;
+    border-top: 1px solid #334155;
+}
 
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 1.2em;
-            background-color: var(--accent-green);
-            margin-left: 5px;
-            animation: blink 1s infinite;
-            vertical-align: middle;
-        }
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+}
 
-        @keyframes blink { 50% { opacity: 0; } }
+.footer-brand .logo {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
 
-        @media (max-width: 768px) { .nav-links { display: none; } }
+/* MENÚ VERTICAL */
+.footer-nav h4, .footer-social h4 {
+    color: var(--text-main);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+    color: var(--accent-green);
+    padding-left: 5px; /* Pequeño efecto de desplazamiento */
+}
+
+/* REDES SOCIALES */
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #334155;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: bold;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(51, 65, 85, 0.5);
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
     /* COMPONENTE: BOTÓN FLOTANTE DE WHATSAPP */
 .wsp-float {
     position: fixed;
@@ -596,10 +658,44 @@ nav {
 
     </div>
 </section>
-    <footer>
+<footer>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <a href="#" class="logo">ALBY<span>ON</span>_DIGITAL</a>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-dim);">
+                Transformando ideas en soluciones digitales de alto rendimiento.
+            </p>
+        </div>
+
+        <div class="footer-nav">
+            <h4>Navegación</h4>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#clientes">Clientes</a></li>
+                <li><a href="#porque">Por qué elegirnos</a></li>
+                <li><a href="#precios">Precios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-social">
+            <h4>Conectemos</h4>
+            <div class="social-links">
+                <a href="#" title="LinkedIn"><span>in</span></a>
+                <a href="#" title="GitHub"><span>gh</span></a>
+                <a href="#" title="Instagram"><span>ig</span></a>
+            </div>
+            <p style="margin-top: 1.5px; font-family: monospace; color: var(--accent-green); font-size: 0.75rem;">
+                // Analista Programador
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
         <p>© 2026 Albyon Digital - All-By ON. Desarrollado con ❤️ en Ñuble.</p>
-        <p style="margin-top: 10px; font-family: monospace; color: var(--accent-green);">// Analista Programador</p>
-    </footer>
+    </div>
+</footer>
 <a href="https://wa.me/56977462774?text=Hola%20Albyon%20Digital,%20me%20gustaría%20consultar%20por%20sus%20servicios" 
    class="wsp-float" 
    target="_blank" 
