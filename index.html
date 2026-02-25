@@ -100,9 +100,13 @@
     .hero {
         position: relative;
         height: 100vh;
-        width: 100vw; /* Forzamos el 100% del ancho de pantalla */
-        margin-left: calc(-50vw + 50%); /* Rompe márgenes del contenedor padre si existen */
-        margin-right: calc(-50vw + 50%);
+        /* Forzamos el ancho completo rompiendo el contenedor padre */
+        width: 100vw; 
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -152,6 +156,7 @@
     .hero-content {
         position: relative;
         z-index: 2;
+        width: 100%;
         max-width: 800px;
     }
 
@@ -187,7 +192,6 @@
         box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
         filter: brightness(1.1);
     }
-
     /* --- Secciones Generales --- */
     section {
         padding: 8rem 2rem;
