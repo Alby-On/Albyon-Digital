@@ -96,16 +96,16 @@
         box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
     }
 
-    /* --- Hero & Slider (Actualizado para ancho completo) --- */
+/* --- Hero & Slider (Corrección Definitiva Ancho Completo) --- */
     .hero {
         position: relative;
         height: 100vh;
-        /* Forzamos el ancho completo rompiendo el contenedor padre */
+        /* Forzamos el ancho completo usando transform para corregir el desplazamiento a la izquierda */
         width: 100vw; 
         left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
+        transform: translateX(-50%);
+        margin-left: 0;
+        margin-right: 0;
         
         display: flex;
         flex-direction: column;
