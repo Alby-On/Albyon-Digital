@@ -1,28 +1,32 @@
-async function cargarComponentes() {
-    const componentes = [
-        { id: 'main-header', url: 'components/header.html' },
-        { id: 'main-footer', url: 'components/footer.html' },
-        { id: 'main-wsp-button', url: 'components/wsp-button.html' },
-        { id: 'nosotros', url: 'pages/nosotros.html' },
-        { id: 'contacto', url: 'pages/contacto.html' },
-        { id: 'proyectos', url: 'pages/proyectos.html' },
-        { id: 'porque-elegirnos', url: 'pages/porque-elegirnos.html' },
-        { id: 'planes', url: 'pages/planes.html' },
-        { id: 'servicios', url: 'pages/servicios.html' },
-    ];
+async function cargarComponente(id, archivo) {
+    const contenedor = document.getElementById(id);
+    
+    // VALIDACIÓN: Si el ID no existe en el HTML, no intentes cargar nada
+    if (!contenedor) {
+        console.warn(`Ojo Jaime: El contenedor con ID "${id}" no existe en tu index.html`);
+        return; 
+    }
 
-    for (const comp of componentes) {
-        try {
-            const response = await fetch(comp.url);
-            if (response.ok) {
-                const html = await response.text();
-                document.getElementById(comp.id).innerHTML = html;
-            }
-        } catch (error) {
-            console.error(`Error cargando el componente ${comp.id}:`, error);
+    try {
+        const respuesta = await fetch(archivo);
+        if (respuesta.ok) {
+            const contenido = await respuesta.text();
+            contenedor.innerHTML = contenido;
+        } else {
+            console.error(`Error 404: No se encontró el archivo ${archivo}`);
         }
+    } catch (error) {
+        console.error(`Error de red al cargar ${archivo}:`, error);
     }
 }
 
-// Ejecutar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', cargarComponentes);
+// Llamada organizada
+document.addEventListener("DOMContentLoaded", () => {
+    cargarComponente('header', 'components/header.html');
+    cargarComponente('nosotros', 'pages/nosotros.html');
+    cargarComponente('contacto', 'pages/contacto.html');
+    cargarComponente('proyectos', 'pages/proyectos.html');
+    cargarComponente('planes', 'pages/planes.html');
+    cargarComponente('servicios', 'pages/servicios.html');
+    cargarComponente('footer', 'components/footer.html');
+});
