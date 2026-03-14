@@ -29,4 +29,5 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarComponente('planes', 'pages/planes.html');
     cargarComponente('servicios', 'pages/servicios.html');
     cargarComponente('footer', 'components/footer.html');
+    cargarComponente('wsp-button', 'components/wsp-button.html');
 });
