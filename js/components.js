@@ -1,6 +1,6 @@
 /**
- * Albyon Digital - Cargador de Componentes Resiliente
- * Jaime, con este ajuste los errores en un componente no detendrán a los demás.
+ * Albyon Digital - Cargador de Componentes Resiliente (V2)
+ * Jaime: Ahora emite un evento cada vez que inyecta HTML para que el Observer lo detecte.
  */
 async function cargarComponente(id, archivo) {
     const contenedor = document.getElementById(id);
@@ -14,36 +14,42 @@ async function cargarComponente(id, archivo) {
         const respuesta = await fetch(archivo);
         
         if (!respuesta.ok) {
-            // Lanzamos error para que lo atrape el 'catch' local de esta función
             throw new Error(`Status ${respuesta.status}: ${respuesta.statusText}`);
         }
 
         const contenido = await respuesta.text();
         contenedor.innerHTML = contenido;
         
-        // Log de éxito para trackeo en consola
+        // --- LA CLAVE DEL ÉXITO ---
+        // Lanzamos un evento personalizado para avisar al Observer en main.js
+        window.dispatchEvent(new CustomEvent('componenteCargado', { 
+            detail: { id: id, archivo: archivo } 
+        }));
+        
         console.log(`[Albyon] ✓ Cargado con éxito: ${id} (${archivo})`);
 
     } catch (error) {
-        // Aquí es donde evitamos que el error "rompa" el resto del sitio
         console.error(`[Albyon] ✘ Falló la carga de [${archivo}] para el contenedor [#${id}]:`, error.message);
         
-        // Opcional: Mostrar un mensaje visual en el lugar donde iba el componente
-        contenedor.innerHTML = `<p style="color: grey; font-size: 12px; padding: 20px;">Componente ${id} no disponible momentáneamente.</p>`;
+        // Mensaje de respaldo amigable para el usuario
+        contenedor.innerHTML = `<p style="color: #64748b; font-size: 0.8rem; padding: 20px; text-align: center;">Módulo ${id} en mantenimiento.</p>`;
     }
 }
 
 // Llamada organizada - Ejecución en paralelo
 document.addEventListener("DOMContentLoaded", () => {
-    // Al no usar 'await' aquí, todas las peticiones salen al mismo tiempo.
-    // Si 'nosotros' tarda o falla, 'contacto' cargará apenas reciba su respuesta.
-    
-    cargarComponente('header', 'components/header.html');
-    cargarComponente('nosotros', 'pages/nosotros.html');
-    cargarComponente('contenedor-contacto', 'pages/contacto.html'); // Tu nuevo ID corregido
-    cargarComponente('proyectos', 'pages/proyectos.html');
-    cargarComponente('planes', 'pages/planes.html');
-    cargarComponente('servicios', 'pages/servicios.html');
-    cargarComponente('footer', 'components/footer.html');
-    cargarComponente('wsp-button', 'components/wsp-button.html');
+    // Definimos los componentes en un array para facilitar el mantenimiento futuro
+    const componentes = [
+        { id: 'header', path: 'components/header.html' },
+        { id: 'nosotros', path: 'pages/nosotros.html' },
+        { id: 'contenedor-contacto', path: 'pages/contacto.html' },
+        { id: 'proyectos', path: 'pages/proyectos.html' },
+        { id: 'planes', path: 'pages/planes.html' },
+        { id: 'servicios', path: 'pages/servicios.html' },
+        { id: 'footer', path: 'components/footer.html' },
+        { id: 'wsp-button', path: 'components/wsp-button.html' }
+    ];
+
+    // Ejecutamos todas las cargas simultáneamente
+    componentes.forEach(comp => cargarComponente(comp.id, comp.path));
 });
