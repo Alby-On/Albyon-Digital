@@ -70,55 +70,7 @@
     .card ul li { margin-bottom: 0.5rem; }
     .card ul li::before { content: "→ "; color: var(--accent-green); }
 
-    /* --- Formulario --- */
-    form {
-        max-width: 700px;
-        margin: 3rem auto 0;
-        background: var(--card-bg);
-        padding: 2.5rem;
-        border-radius: 8px;
-        border: 1px solid #334155;
-        transition: transform 0.3s ease, border-color 0.3s ease;
-    }
 
-    form:hover { border-color: var(--accent-green); }
-
-    .form-group { margin-bottom: 1.5rem; }
-
-    .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    label {
-        display: block;
-        color: var(--accent-green);
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        margin-bottom: 0.6rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-    }
-
-    input, textarea {
-        width: 100%;
-        padding: 1rem;
-        background: #0f172a;
-        border: 1px solid #334155;
-        color: var(--text-main);
-        border-radius: 4px;
-        font-size: 0.95rem;
-        outline: none;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    input:focus, textarea:focus {
-        border-color: var(--accent-green);
-        background: #1e293b;
-        box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
-    }
 
     /* --- Animaciones de Servicios --- */
     .card {
