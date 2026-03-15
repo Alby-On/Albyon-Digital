@@ -41,11 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Definimos los componentes en un array para facilitar el mantenimiento futuro
     const componentes = [
         { id: 'header', path: 'components/header.html' },
-        { id: 'contenedor-porque-elegirnos', path: 'pages/porque-elegirnos.html' },
-        { id: 'contenedor-contacto', path: 'pages/contacto.html' },
-        { id: 'contenedor-proyectos', path: 'pages/proyectos.html' },
-        { id: 'contenedor-planes', path: 'pages/planes.html' },
+        { id: 'contenedor-hero', path: 'components/hero.html' },
         { id: 'contenedor-servicios', path: 'pages/servicios.html' },
+        { id: 'contenedor-porque-elegirnos', path: 'pages/porque-elegirnos.html' },
+        { id: 'contenedor-proyectos', path: 'pages/proyectos.html' },
+        { id: 'contenedor-contacto', path: 'pages/contacto.html' },
+        { id: 'contenedor-planes', path: 'pages/planes.html' },
         { id: 'footer', path: 'components/footer.html' },
         { id: 'wsp-button', path: 'components/wsp-button.html' }
     ];
