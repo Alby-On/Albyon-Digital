@@ -1,71 +1,53 @@
-<section id="contacto" style="padding: 8rem 2rem;">
-    <h2 style="text-align: center; margin-bottom: 3rem;">Hablemos de tu <span>Proyecto</span></h2>
+<section id="contacto">
+    <h2>Hablemos de tu <span>Proyecto</span></h2>
 
-    <div style="display: flex; gap: 4rem; max-width: 1000px; margin: 0 auto; flex-wrap: wrap;">
-        
-        <div style="flex: 1; min-width: 320px;">
-            <p style="margin-bottom: 2rem; color: var(--text-dim);">
+    <div class="contacto-wrapper">
+        <div class="form-column">
+            <p class="form-intro">
                 ¿Listo para encender tu presencia digital? Completa el formulario y te contactaré a la brevedad.
             </p>
 
-            <form action="#" id="form-contacto" style="text-align: left; margin-top: 0; background: var(--card-bg); padding: 2.5rem; border-radius: 8px; border: 1px solid #334155;">
+            <form action="#" id="form-contacto">
                 <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" placeholder="Ej. Juan Pérez" required style="transition: all 0.3s ease;">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="tu@correo.cl" required style="transition: all 0.3s ease;">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="tu@correo.cl" required>
                     </div>
                     <div class="form-group">
-                        <label>Número de contacto</label>
-                        <input type="tel" placeholder="+56 9 7746 2774" required style="transition: all 0.3s ease;">
+                        <label for="telefono">Número de contacto</label>
+                        <input type="tel" id="telefono" placeholder="+56 9 7746 2774" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Detalle del requerimiento</label>
-                    <textarea rows="5" placeholder="Cuéntame sobre tu PyME o proyecto..." required style="transition: all 0.3s ease;"></textarea>
+                    <label for="mensaje">Detalle del requerimiento</label>
+                    <textarea id="mensaje" rows="5" placeholder="Cuéntame sobre tu PyME o proyecto..." required></textarea>
                 </div>
 
-                <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer; transition: all 0.3s ease;">
+                <button type="submit" class="cta-button submit-btn">
                     Enviar Requerimiento
                 </button>
             </form>
         </div>
 
-        <div class="info-column" style="flex: 0 0 300px; min-width: 280px; display: flex; flex-direction: column; gap: 2rem;">
-            <div style="background: var(--card-bg); padding: 2rem; border-radius: 8px; border: 1px solid #334155;">
-                <h3 style="color: var(--accent-green); font-size: 1.1rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Contacto Directo</h3>
+        <div class="info-column">
+            <div class="info-card">
+                <h3>Contacto Directo</h3>
                 
-                <div style="display: flex; flex-direction: column; gap: 1.5rem; font-size: 0.9rem; color: var(--text-dim);">
-                    <div style="display: flex; align-items: flex-start; gap: 12px;">
-                        <span class="contact-icon" style="color: var(--accent-green); font-size: 1.2rem;">✉</span>
-                        <span><strong>Email:</strong><br>jaimeajimenezs@outlook.com</span>
+                <div class="info-list">
+                    <div class="info-item">
+                        <span class="contact-icon">✉</span>
+                        <p><strong>Email:</strong><br>jaimeajimenezs@outlook.com</p>
                     </div>
                     
-                    <div style="display: flex; align-items: flex-start; gap: 12px;">
-                        <span class="contact-icon" style="color: var(--accent-green); font-size: 1.2rem; animation-delay: 0.5s;">📞</span>
-                        <span><strong>WhatsApp / Celular:</strong><br>+569 7746 2774</span>
+                    <div class="info-item">
+                        <span class="contact-icon delay-pulse">📞</span>
+                        <p><strong>WhatsApp / Celular:</strong><br>+569 7746 2774</p>
                     </div>
                     
-                    <div style="display: flex; align-items: flex-start; gap: 12px;">
-                        <span class="contact-icon" style="color: var(--accent-green); font-size: 1.2rem; animation-delay: 1s;">🕒</span>
-                        <span><strong>Horario de Atención:</strong><br>Lun - Vie | 10:00 - 23:00 hrs</span>
-                    </div>
-                </div>
-
-                <a href="https://wa.me/56977462774" target="_blank" class="cta-button" style="display: block; text-align: center; margin-top: 2rem; padding: 0.8rem; font-size: 0.8rem; background: transparent; border: 1px solid var(--accent-green); color: var(--accent-green);">
-                    Chat Directo WhatsApp
-                </a>
-            </div>
-
-            <p style="font-size: 0.8rem; color: var(--text-dim); font-style: italic; border-left: 2px solid var(--accent-green); padding-left: 1rem;">
-                "Atención técnica personalizada para PyMEs de la Región de Ñuble y todo Chile."
-            </p>
-        </div>
-
-    </div>
-</section>
+                    <div
