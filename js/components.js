@@ -24,7 +24,7 @@ async function cargarComponente(id, archivo) {
 document.addEventListener("DOMContentLoaded", () => {
     cargarComponente('header', 'components/header.html');
     cargarComponente('nosotros', 'pages/nosotros.html');
-    cargarComponente('contacto', 'pages/contacto.html');
+    cargarComponente('component-contacto', 'pages/contacto.html');
     cargarComponente('proyectos', 'pages/proyectos.html');
     cargarComponente('planes', 'pages/planes.html');
     cargarComponente('servicios', 'pages/servicios.html');
