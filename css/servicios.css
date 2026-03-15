@@ -1,56 +1,121 @@
-/* --- Grid y Tarjetas de Servicios --- */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+/* --- Sección Servicios --- */
+#servicios {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+    background-color: var(--bg-dark);
 }
 
+/* Título de la sección */
+#servicios h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 4rem;
+    text-align: center;
+    color: var(--text-main);
+}
+
+#servicios h2 span {
+    color: var(--accent-green);
+}
+
+/* --- Grid de Servicios --- */
+.grid {
+    display: grid;
+    /* Evita que las cards se estiren demasiado en pantallas grandes */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+}
+
+/* --- Tarjetas (Cards) --- */
 .card {
     background: var(--card-bg);
     border: 1px solid #334155;
-    padding: 2.5rem;
-    border-radius: 8px;
-    transition: border-color 0.3s;
-    /* Estado inicial para la animación del Observer */
+    padding: 3rem 2.5rem;
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    
+    /* Estado inicial para la animación de entrada */
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card.visible { 
-    opacity: 1; 
-    transform: translateY(0); 
+/* Clase que activa el IntersectionObserver */
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.card:hover { 
-    border-color: var(--accent-green); 
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
-    background: rgba(30, 41, 59, 0.8);
+.card:hover {
+    border-color: var(--accent-green);
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(56, 189, 248, 0.1);
+    background: rgba(30, 41, 59, 0.9);
 }
 
+/* Títulos de las tarjetas */
 .card h3 {
     color: var(--accent-green);
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
+/* Listado de beneficios */
 .card ul {
     list-style: none;
-    color: var(--text-dim);
-    font-size: 0.9rem;
+    padding: 0;
+    margin: 0;
 }
 
-.card ul li { 
-    margin-bottom: 0.5rem; 
+.card ul li {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
     transition: transform 0.3s ease;
 }
 
-.card ul li::before { 
-    content: "→ "; 
-    color: var(--accent-green); 
+/* El check/flecha decorativa */
+.card ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-weight: bold;
 }
 
-.card:hover li { 
-    transform: translateX(5px); 
+/* Efecto al pasar el mouse sobre la card, las líneas se mueven */
+.card:hover ul li {
+    color: var(--text-main);
+    transform: translateX(5px);
+}
+
+/* Resaltado de texto fuerte (strong) */
+.card ul li strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* --- Ajustes para Móviles --- */
+@media screen and (max-width: 768px) {
+    #servicios {
+        padding: 5rem 1.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .card {
+        padding: 2rem;
+    }
 }
