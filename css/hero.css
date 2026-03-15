@@ -1,0 +1,96 @@
+/* --- Hero & Slider (Corrección Definitiva Ancho Completo) --- */
+    .hero {
+        position: relative;
+        height: 100vh;
+        /* Forzamos el ancho completo usando transform para corregir el desplazamiento a la izquierda */
+        width: 100vw; 
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0;
+        margin-right: 0;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 1rem;
+        overflow: hidden;
+        background-color: var(--bg-dark);
+    }
+
+    .hero-slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .slide-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+    }
+
+    .slide-bg.active {
+        opacity: 1;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9));
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        color: var(--text-main); 
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+    }
+
+    .cta-button {
+        background-color: var(--accent-green);
+        color: #0f172a;
+        padding: 1rem 2.5rem;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        display: inline-block;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
+        filter: brightness(1.1);
+    }
